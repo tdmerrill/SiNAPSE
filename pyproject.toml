@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SiNAPSE"
+version = "0.1.0"
+description = "Tools for neural spike sorting, analysis, and database management."
+authors = [
+    {name="Tyler Merrill", email="tyler.merrill@tufts.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "matplotlib>=3.7",
+    "scipy>=1.10",
+    "h5py>=3.8",
+    "spikeinterface>=0.100",
+    "probeinterface>=0.2",
+    "spikeinterface-gui",
+    "open-ephys-python-tools",
+    "kilosort"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["SiNAPSE"]
