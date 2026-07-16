@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SiNAPSE"
-version = "0.1.0"
+version = "0.2.0"
 description = "Tools for neural spike sorting, analysis, and database management."
 authors = [
     {name="Tyler Merrill", email="tyler.merrill@tufts.edu"}
@@ -18,13 +18,19 @@ dependencies = [
     "matplotlib>=3.7",
     "scipy>=1.10",
     "h5py>=3.8",
-    "spikeinterface>=0.100",
-    "probeinterface>=0.2",
+    "spikeinterface==0.103.2",
+    "probeinterface==0.3.1",
     "spikeinterface-gui",
     "open-ephys-python-tools",
-    "kilosort"
+    "kilosort",
+    "PyQt5",
+    "pyqtgraph"
 ]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["SiNAPSE"]
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+SiNAPSE = ["*.json", "**/*.json"]

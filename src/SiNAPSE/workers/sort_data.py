@@ -332,13 +332,16 @@ if __name__ == '__main__':
 
     my_probe = get_probe(manufacturer="cambridgeneurotech", probe_name=args.probe)
     my_probe.set_device_channel_indices(json.loads(args.chanmap))
-    recording_probe = recording.set_probe(my_probe, group_mode='by_shank')
+    shank_ids = getattr(my_probe, "shank_ids", None)
+    if shank_ids is not None and len(shank_ids) == my_probe.get_contact_count():
+        recording_probe = recording.set_probe(my_probe, group_mode="by_shank")
+    else:
+        recording_probe = recording.set_probe(my_probe)
     plot_probe(recording_probe.get_probe())
 
     preprocess_save_folder = os.path.join(oe_path, '..', '..', 'sorting', 'preprocessed')
     recording_cmr = recording_probe
     recording_f = si.bandpass_filter(recording_probe, freq_min=300, freq_max=10000)
-
     removed_ch_path = os.path.join(args.data, '..', 'removed_ch.json')
 
     bad_channels = []
